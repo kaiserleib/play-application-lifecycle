@@ -11,9 +11,7 @@ import com.google.inject.Inject;
 import service.ShutdownableService;
 
 public class Application extends Controller {
-
     @Inject private ShutdownableService service;
-    @Inject private ServiceShutdowner shutdowner;
 
     public Result index() {
         return ok(index.render("Your new application is ready."));
