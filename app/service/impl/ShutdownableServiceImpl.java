@@ -1,30 +1,28 @@
 package service.impl;
+
 import com.google.inject.Inject;
 
 import javax.inject.Named;
 
-import play.inject.ApplicationLifecycle;
-import play.libs.F;
+
 
 
 import com.google.inject.Singleton;
 import service.ShutdownableService;
+import service.ServiceShutdowner;
 
 @Singleton
 @Named
 public class ShutdownableServiceImpl implements ShutdownableService, Runnable {
+
     private volatile boolean started;
     private Thread thread;
 
-    @Inject
-    public ShutdownableServiceImpl(ApplicationLifecycle lifecycle) {
+    @Inject private ServiceShutdowner serviceShutdowner;
+
+    public ShutdownableServiceImpl() {
         System.out.println("constructor called");
         this.started = false;
-
-        lifecycle.addStopHook(() -> {
-            started = false;
-            return F.Promise.pure(null);
-        });
     }
 
     @Override
