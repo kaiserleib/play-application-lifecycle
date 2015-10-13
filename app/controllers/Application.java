@@ -5,13 +5,15 @@ import play.mvc.*;
 
 import views.html.*;
 
-import com.google.inject.Inject;
+import service.ServiceShutdowner;
 
+import com.google.inject.Inject;
 import service.ShutdownableService;
 
 public class Application extends Controller {
 
     @Inject private ShutdownableService service;
+    @Inject private ServiceShutdowner shutdowner;
 
     public Result index() {
         return ok(index.render("Your new application is ready."));
@@ -30,5 +32,4 @@ public class Application extends Controller {
         service.stop();
         return ok("stop");
     }
-
 }

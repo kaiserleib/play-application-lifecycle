@@ -1,15 +1,10 @@
 package service.impl;
 
-import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import javax.inject.Named;
 
-
-
-
-import com.google.inject.Singleton;
 import service.ShutdownableService;
-import service.ServiceShutdowner;
 
 @Singleton
 @Named
@@ -17,8 +12,6 @@ public class ShutdownableServiceImpl implements ShutdownableService, Runnable {
 
     private volatile boolean started;
     private Thread thread;
-
-    @Inject private ServiceShutdowner serviceShutdowner;
 
     public ShutdownableServiceImpl() {
         System.out.println("constructor called");
